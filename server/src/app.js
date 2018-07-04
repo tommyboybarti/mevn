@@ -9,6 +9,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.listen(process.env.PORT || 8081)
+console.log('app.js says: hello world, I am listening')
 
 const mongoose = require('mongoose')
 // create a connection with a db called posts
@@ -54,4 +55,47 @@ app.get('/posts', (req, res) => {
   }).sort({_id:-1})
 })
 
-console.log('app.js says: hello world, I am listening')
+app.get('/post/:id', (req, res) => {
+  const db = req.db
+  Post.findById(req.params.id, 'title description code', function (err, post) {
+    if (err) {
+      console.error(err)
+    }
+    res.send(post)
+  })
+})
+
+app.put('/posts/:id', (req, res) => {
+  const db = req.db
+  Post.findById(req.params.id, 'title description code', function (err, post) {
+    if (err) {
+      console.error(err)
+    }
+    post.title = req.body.title
+    post.description = req.body.description
+    post.code = req.body.code
+    post.save(function(err) {
+      if (err) {
+        console.log(err)
+      }
+      res.send({
+        success: true
+      })
+    })
+  })
+})
+
+app.delete('/posts/:id', (req, res) => {
+  const db = req.db
+  Post.remove({
+    _id: req.params.id
+  }, function(err, post){
+    if (err) {
+      res.send(err)
+    }
+    res.send({
+      success: true,
+      message: 'Successfully deleted'
+    })
+  })
+})
