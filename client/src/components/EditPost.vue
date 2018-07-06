@@ -15,7 +15,9 @@
         <textarea placeholder="Code" v-model="post.code"></textarea>
       </div>
       <div>
-        <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">Cancel</router-link>
+        <router-link v-bind:to="{ name: 'ViewPost'
+        //, params: { id: post._id }
+        }">Cancel</router-link>
         <button @click="updatePost">Update</button>
       </div>
     </div>

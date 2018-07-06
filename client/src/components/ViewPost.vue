@@ -19,7 +19,9 @@
             <td>{{ post.description }}</td>
             <td><pre>{{ post.code }}</pre></td>
             <td>
-              <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
+              <router-link v-bind:to="{ name: 'EditPost'
+              // , params: { id: post._id }
+              }">Edit</router-link>
               <a class="btnDelete" @click="deletePost(post._id)">Delete</a>
             </td>
           </tr>
