@@ -69,10 +69,13 @@ a:hover {
   color: deepskyblue;
 }
 button {
+  color: rgb(53, 99, 184);
   margin-left: 15px;
-  background-color: aliceblue;
-  border-radius: 5px;
-  padding: 5px 15px;
-  font-size: 14px;
+  border: none;
+  font-size: 16px;
+}
+button:hover {
+  color: deepskyblue;
+  cursor: pointer;
 }
 </style>

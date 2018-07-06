@@ -34,8 +34,12 @@
       </div>
     </div>
     <div v-else>
-      There are no posts <br />
-      <router-link v-bind:to="{ name: 'NewPost' }" class="add_post_link">Add Post</router-link>
+      <div>
+        <p>There are no Posts</p>
+      </div>
+      <div>
+        <router-link v-bind:to="{ name: 'NewPost' }" class="add_post_link">Add Post</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -88,7 +92,7 @@ td {
 }
 a {
   text-decoration: none;
-  color: darkslategrey;
+  color: rgb(53, 99, 184);
 }
 a:hover {
   color: deepskyblue;
