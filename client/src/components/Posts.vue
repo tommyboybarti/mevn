@@ -5,24 +5,31 @@
       <div>
         <router-link v-bind:to="{ name: 'NewPost' }" class="">Add Post</router-link>
       </div>
-      <table>
-        <tr>
-          <td>Title</td>
-          <td width="550">Description</td>
-          <td width="550">Code</td>
-          <td width="100" align="center">Action</td>
-        </tr>
-        <tr v-for="post in posts" :key="post.id">
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.description }}</p>
-          <code>{{ post.code }}</code>
-          <td align="center">
-            <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
-            <a href="" @click="deletePost(post._id)">Delete</a>
-          </td>
-        </tr>
-      </table>
-    <!-- v-for requires a key -->
+      <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Code</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- v-for requires a key -->
+            <tr v-for="post in posts" :key="post.id">
+              <td>{{ post.title }}</td>
+              <td>{{ post.description }}</td>
+              <td><code>{{ post.code }}</code></td>
+              <td>
+                <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">View</router-link>
+                <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
+                <a class="btnDelete" href="" @click="deletePost(post._id)">Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div v-else>
       There are no posts <br />
@@ -38,7 +45,7 @@ export default {
   name: 'posts',
   data () {
     return {
-      msg: 'Postings',
+      msg: 'Overview',
       posts: []
     }
   },
@@ -59,4 +66,32 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  margin-top: 20px;
+  border: 1px black solid;
+  background-color: gainsboro;
+}
+table {
+  width: 100%;
+  padding: 10px;
+}
+th {
+  padding: 20px;
+  background-color: rgba(130, 130, 130, 0.3);
+}
+td {
+  padding: 15px;
+  border: dotted black 1px;
+  background-color: rgba(100, 43, 43, 0.2);
+}
+a {
+  text-decoration: none;
+  color: darkslategrey;
+}
+a:hover {
+  color: deepskyblue;
+}
+.btnDelete {
+  color: crimson;
+}
 </style>

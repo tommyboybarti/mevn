@@ -42,7 +42,7 @@ module.exports = (app) => {
       res.send(post)
     })
   })
-  app.put('/posts/:id', (req, res) => {
+  app.put('/posts/edit/:id', (req, res) => {
     const db = req.db
     Post.findById(req.params.id, 'title description code', function (err, post) {
       if (err) {

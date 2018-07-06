@@ -1,0 +1,99 @@
+<template>
+  <div class="post">
+    <h1>{{ msg }}</h1>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Code</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ this.title }}</td>
+            <td>{{ this.description }}</td>
+            <td><code>{{ this.code }}</code></td>
+            <td>
+              <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link> -->
+              <a class="btnDelete" href="" @click="deletePost(post._id)">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="button">
+      <router-link v-bind:to="{ name: 'Posts' }">Back</router-link>
+    </div>
+  </div>
+</template>
+
+<script>
+import PostsService from '@/services/PostsService'
+
+export default {
+  name: 'posts',
+  data () {
+    return {
+      msg: 'Details',
+      title: '',
+      description: '',
+      code: ''
+    }
+  },
+  mounted () {
+    this.getPost()
+  },
+  methods: {
+    async getPost () {
+      const response = await PostsService.getPost({
+        id: this.$route.params.id
+      })
+      this.title = response.data.title
+      this.description = response.data.description
+      this.code = response.data.code
+    },
+    async deletePost (id) {
+      await PostsService.deletePost(id)
+      this.$router.push({ name: 'Posts' })
+    }
+  }
+}
+</script>
+
+<style scoped>
+.container {
+  margin-top: 20px;
+  border: 1px black solid;
+  background-color: gainsboro;
+}
+table {
+  width: 100%;
+  padding: 10px;
+}
+th {
+  padding: 20px;
+  background-color: rgba(130, 130, 130, 0.3);
+}
+td {
+  padding: 15px;
+  border: dotted black 1px;
+  background-color: rgba(100, 43, 43, 0.2);
+}
+a {
+  text-decoration: none;
+  color: darkslategrey;
+}
+a:hover {
+  color: deepskyblue;
+}
+.btnDelete {
+  color: crimson;
+}
+.button {
+  padding-top: 20px;
+  font-size: 18px;
+}
+</style>

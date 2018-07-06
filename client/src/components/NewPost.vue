@@ -1,17 +1,18 @@
 <template>
   <div class="posts">
-    <h1>Add Post</h1>
+    <h1>Add Info</h1>
     <div class="form">
       <div>
-        <input type="text" name="title" placeholder="Title" v-model="title">
+        <input class="title" type="text" name="title" placeholder="Title" v-model="title">
       </div>
       <div>
-        <textarea rows="10" cols="100" placeholder="Description" v-model="description"></textarea>
+        <textarea placeholder="Description" v-model="description"></textarea>
       </div>
       <code>
-        <textarea rows="10" cols="100" placeholder="Code" v-model="code"></textarea>
+        <textarea placeholder="Code" v-model="code"></textarea>
       </code>
       <div>
+        <router-link v-bind:to="{ name: 'Posts'}">Back</router-link>
         <button class="app_post_btn" @click="addPost">Add</button>
       </div>
     </div>
@@ -45,5 +46,29 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.title {
+  font-size: 14px;
+  padding: 10px;
+  width: 50%;
+}
+textarea {
+  margin-top: 10px;
+  width: 80%;
+  height: 150px;
+  padding: 5px;
+}
+a {
+  text-decoration: none;
+  color: darkslategrey;
+}
+a:hover {
+  color: deepskyblue;
+}
+button {
+  margin-left: 15px;
+  background-color: aliceblue;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 14px;
+}
 </style>
