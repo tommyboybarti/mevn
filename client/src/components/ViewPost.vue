@@ -17,7 +17,7 @@
             <td>{{ this.post.description }}</td>
             <td><code>{{ this.post.code }}</code></td>
             <td>
-              <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link> -->
+              <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
               <a class="btnDelete" @click="deletePost(post._id)">Delete</a>
             </td>
           </tr>
@@ -49,6 +49,7 @@ export default {
         id: this.$route.params.id
       })
       this.post = response.data
+      // it's enough to only send one obj.
       // this.title = response.data.title
       // this.description = response.data.description
       // this.code = response.data.code

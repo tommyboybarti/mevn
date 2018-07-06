@@ -23,8 +23,8 @@
               <td><code>{{ post.code }}</code></td>
               <td>
                 <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">View</router-link>
-                <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
-                <a class="btnDelete" href="" @click="deletePost(post._id)">Delete</a>
+                <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
+                <a class="btnDelete" href="" @click="deletePost(post._id)">Delete</a> -->
               </td>
             </tr>
           </tbody>
@@ -56,11 +56,11 @@ export default {
     async getPosts () {
       const response = await PostsService.fetchPosts()
       this.posts = response.data.posts
-    },
-    async deletePost (id) {
-      await PostsService.deletePost(id)
-      this.$router.push({ name: 'Posts' })
     }
+    // async deletePost (id) {
+    //   await PostsService.deletePost(id)
+    //   this.$router.push({ name: 'Posts' })
+    // }
   }
 }
 </script>

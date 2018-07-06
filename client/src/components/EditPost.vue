@@ -3,13 +3,13 @@
     <h1>Edit Info</h1>
     <div class="form">
       <div>
-        <input class="title" type="text" name="title" placeholder="Title" v-model="title">
+        <input class="title" type="text" name="title" placeholder="Title" v-model="post.title">
       </div>
       <div>
-        <textarea placeholder="Description" v-model="description"></textarea>
+        <textarea placeholder="Description" v-model="post.description"></textarea>
       </div>
       <div>
-        <textarea placeholder="Code" v-model="code"></textarea>
+        <textarea placeholder="Code" v-model="post.code"></textarea>
       </div>
       <div>
         <!-- <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">Cancel</router-link> -->
@@ -25,9 +25,10 @@ import PostsService from '@/services/PostsService'
 export default {
   data () {
     return {
-      title: '',
-      description: '',
-      code: ''
+      post: {}
+      // title: '',
+      // description: '',
+      // code: ''
     }
   },
   mounted () {
@@ -38,16 +39,17 @@ export default {
       const response = await PostsService.getPost({
         id: this.$route.params.id
       })
-      this.title = response.data.title
-      this.description = response.data.description
-      this.code = response.data.code
+      this.post = response.data
+      // this.title = response.data.title
+      // this.description = response.data.description
+      // this.code = response.data.code
     },
     async updatePost () {
       await PostsService.updatePost({
         id: this.$route.params.id,
-        title: this.title,
-        description: this.description,
-        code: this.code
+        title: this.post.title,
+        description: this.post.description,
+        code: this.post.code
       })
       this.$router.push({ name: 'Posts' })
     }
