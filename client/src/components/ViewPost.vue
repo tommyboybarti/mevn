@@ -84,17 +84,16 @@ td {
   background-color: rgba(136, 217, 223, 0.2);
 }
 a {
+  display: block;
+  margin: 10px;
   text-decoration: none;
   color: darkslategrey;
 }
 a:hover {
   color: deepskyblue;
+  cursor: pointer;
 }
 .btnDelete {
   color: crimson;
-}
-.button {
-  padding-top: 20px;
-  font-size: 18px;
 }
 </style>

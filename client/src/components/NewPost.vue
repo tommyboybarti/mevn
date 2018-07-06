@@ -14,7 +14,7 @@
         <textarea placeholder="Code" v-model="code"></textarea>
       <div>
         <router-link v-bind:to="{ name: 'Posts'}">Back</router-link>
-        <button class="app_post_btn" @click="addPost">Add</button>
+        <a class="app_post_btn" @click="addPost">Add</a>
       </div>
     </div>
   </div>
@@ -62,19 +62,12 @@ textarea {
   padding: 5px;
 }
 a {
+  display: inline-block;
+  margin: 10px;
   text-decoration: none;
   color: darkslategrey;
 }
 a:hover {
-  color: deepskyblue;
-}
-button {
-  color: rgb(53, 99, 184);
-  margin-left: 15px;
-  border: none;
-  font-size: 16px;
-}
-button:hover {
   color: deepskyblue;
   cursor: pointer;
 }
