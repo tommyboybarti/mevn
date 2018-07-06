@@ -6,23 +6,24 @@
         <router-link v-bind:to="{ name: 'NewPost' }" class="">Add Post</router-link>
       </div>
       <div class="container">
+        <div class="search">
+          <input type="text" v-model="search" placeholder="Search">
+        </div>
         <table>
           <thead>
             <tr>
               <th>Title</th>
               <th>Tags</th>
               <th>Description</th>
-              <th>Code</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <!-- v-for requires a key -->
-            <tr v-for="post in posts" :key="post.id">
+            <tr v-for="post in filteredPosts" :key="post.id">
               <td>{{ post.title }}</td>
               <td>{{ post.tags }}</td>
-              <td>{{ post.description }}</td>
-              <td><code>{{ post.code }}</code></td>
+              <td>{{ post.description | snippet }}</td>
               <td>
                 <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">View</router-link>
                 <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
@@ -48,15 +49,25 @@
 import PostsService from '@/services/PostsService'
 
 export default {
-  name: 'posts',
+  // name: 'posts',
   data () {
     return {
       msg: 'Overview',
-      posts: []
+      posts: [],
+      search: ''
     }
   },
   mounted () {
     this.getPosts()
+  },
+  computed: {
+    // requires a proper function declaration otherwise this.posts is not found.
+    filteredPosts: function () {
+      return this.posts.filter((post) => {
+        const reg = new RegExp(this.search, 'i')
+        return post.title.match(reg) || post.tags.match(reg) || post.description.match(reg)
+      })
+    }
   },
   methods: {
     async getPosts () {
@@ -76,6 +87,12 @@ export default {
   margin-top: 20px;
   border: 1px black solid;
   background-color: gainsboro;
+}
+input {
+  margin: 10px;
+  font-size: 14px;
+  padding: 10px;
+  width: 50%;
 }
 table {
   width: 100%;
