@@ -17,7 +17,7 @@
             <td>{{ post.title }}</td>
             <td>{{ post.tags }}</td>
             <td>{{ post.description }}</td>
-            <td><code>{{ post.code }}</code></td>
+            <td><pre>{{ post.code }}</pre></td>
             <td>
               <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
               <a class="btnDelete" @click="deletePost(post._id)">Delete</a>
