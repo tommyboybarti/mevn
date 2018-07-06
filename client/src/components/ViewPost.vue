@@ -13,12 +13,12 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{ this.title }}</td>
-            <td>{{ this.description }}</td>
-            <td><code>{{ this.code }}</code></td>
+            <td>{{ this.post.title }}</td>
+            <td>{{ this.post.description }}</td>
+            <td><code>{{ this.post.code }}</code></td>
             <td>
               <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link> -->
-              <a class="btnDelete" href="" @click="deletePost(post._id)">Delete</a>
+              <a class="btnDelete" @click="deletePost(post._id)">Delete</a>
             </td>
           </tr>
         </tbody>
@@ -34,13 +34,10 @@
 import PostsService from '@/services/PostsService'
 
 export default {
-  name: 'posts',
   data () {
     return {
       msg: 'Details',
-      title: '',
-      description: '',
-      code: ''
+      post: {}
     }
   },
   mounted () {
@@ -51,9 +48,10 @@ export default {
       const response = await PostsService.getPost({
         id: this.$route.params.id
       })
-      this.title = response.data.title
-      this.description = response.data.description
-      this.code = response.data.code
+      this.post = response.data
+      // this.title = response.data.title
+      // this.description = response.data.description
+      // this.code = response.data.code
     },
     async deletePost (id) {
       await PostsService.deletePost(id)
