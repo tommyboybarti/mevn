@@ -3,7 +3,10 @@
     <h1>Add Info</h1>
     <div class="form">
       <div>
-        <input class="title" type="text" name="title" placeholder="Title" v-model="title">
+        <input type="text" placeholder="Title" v-model="title">
+      </div>
+      <div>
+        <input type="text" placeholder="Tags" v-model="tags">
       </div>
       <div>
         <textarea placeholder="Description" v-model="description"></textarea>
@@ -25,6 +28,7 @@ export default {
   data () {
     return {
       title: '',
+      tags: '',
       description: '',
       code: ''
     }
@@ -33,6 +37,7 @@ export default {
     async addPost () {
       await PostsService.addPost({
         title: this.title,
+        tags: this.tags,
         description: this.description,
         code: this.code
       })
@@ -44,10 +49,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.title {
+input {
   font-size: 14px;
   padding: 10px;
   width: 50%;
+  margin: 5px;
 }
 textarea {
   margin-top: 10px;

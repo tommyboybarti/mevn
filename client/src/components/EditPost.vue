@@ -3,7 +3,10 @@
     <h1>Edit Info</h1>
     <div class="form">
       <div>
-        <input class="title" type="text" name="title" placeholder="Title" v-model="post.title">
+        <input type="text" placeholder="Title" v-model="post.title">
+      </div>
+      <div>
+        <input type="text" placeholder="Tags" v-model="post.tags">
       </div>
       <div>
         <textarea placeholder="Description" v-model="post.description"></textarea>
@@ -48,6 +51,7 @@ export default {
       await PostsService.updatePost({
         id: this.$route.params.id,
         title: this.post.title,
+        tags: this.post.tags,
         description: this.post.description,
         code: this.post.code
       })
@@ -59,7 +63,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.title {
+input {
+  margin: 5px;
   font-size: 14px;
   padding: 10px;
   width: 50%;

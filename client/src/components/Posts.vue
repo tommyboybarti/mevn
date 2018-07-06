@@ -10,6 +10,7 @@
           <thead>
             <tr>
               <th>Title</th>
+              <th>Tags</th>
               <th>Description</th>
               <th>Code</th>
               <th>Action</th>
@@ -19,6 +20,7 @@
             <!-- v-for requires a key -->
             <tr v-for="post in posts" :key="post.id">
               <td>{{ post.title }}</td>
+              <td>{{ post.tags }}</td>
               <td>{{ post.description }}</td>
               <td><code>{{ post.code }}</code></td>
               <td>
@@ -82,7 +84,7 @@ th {
 td {
   padding: 15px;
   border: dotted black 1px;
-  background-color: rgba(100, 43, 43, 0.2);
+  background-color: rgba(136, 217, 223, 0.2);
 }
 a {
   text-decoration: none;
