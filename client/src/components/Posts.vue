@@ -52,7 +52,7 @@ export default {
   // name: 'posts',
   data () {
     return {
-      msg: 'Overview',
+      msg: 'New Title',
       posts: [],
       search: ''
     }
