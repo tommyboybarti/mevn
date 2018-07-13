@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.listen(process.env.PORT || 8089)
-console.log('app.js says: hello world, I am listening on port ')
+console.log(`app.js says: hello world, I am listening on port 8089`)
 
 require('./routes')(app)
 

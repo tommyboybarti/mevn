@@ -7,7 +7,7 @@
           <tr>
             <th>Title</th>
             <th>Tags</th>
-            <th>Description</th>
+            <th>Link</th>
             <th>Code</th>
             <th>Action</th>
           </tr>
@@ -16,7 +16,7 @@
           <tr>
             <td>{{ post.title }}</td>
             <td>{{ post.tags }}</td>
-            <td>{{ post.description }}</td>
+            <td><a v-bind:href="post.description" target="_blank">{{ post.description }}</a></td>
             <td><pre>{{ post.code }}</pre></td>
             <td>
               <router-link v-bind:to="{ name: 'EditPost'

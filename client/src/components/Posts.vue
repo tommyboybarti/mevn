@@ -14,7 +14,6 @@
             <tr>
               <th>Title</th>
               <th>Tags</th>
-              <th>Description</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -23,7 +22,6 @@
             <tr v-for="post in filteredPosts" :key="post.id">
               <td>{{ post.title }}</td>
               <td>{{ post.tags }}</td>
-              <td>{{ post.description | snippet }}</td>
               <td>
                 <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">View</router-link>
                 <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
@@ -52,7 +50,7 @@ export default {
   // name: 'posts',
   data () {
     return {
-      msg: 'New Title',
+      msg: 'Articles',
       posts: [],
       search: ''
     }
@@ -86,7 +84,8 @@ export default {
 .container {
   margin-top: 20px;
   border: 1px black solid;
-  background-color: gainsboro;
+  background-color: #76A3A2;
+  position: center;
 }
 input {
   margin: 10px;
@@ -97,15 +96,17 @@ input {
 table {
   width: 100%;
   padding: 10px;
+  position: relative;
 }
 th {
   padding: 20px;
-  background-color: rgba(130, 130, 130, 0.3);
+  color: #CBD8CF;
+  background-color: #0D202A;
 }
 td {
   padding: 15px;
   border: dotted black 1px;
-  background-color: rgba(136, 217, 223, 0.2);
+  background-color: #CBD8CF;
 }
 a {
   text-decoration: none;
