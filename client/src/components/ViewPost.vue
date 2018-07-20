@@ -88,11 +88,9 @@ td {
 a {
   display: block;
   margin: 10px;
-  text-decoration: none;
   color: darkslategrey;
 }
 a:hover {
-  color: deepskyblue;
   cursor: pointer;
 }
 .btnDelete {

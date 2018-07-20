@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="home">
     <h1>{{ msg }}</h1>
     <p>What would you like to look up?</p>
     <div>
@@ -21,5 +21,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.home {
+  height: 650px;
+  padding-top: 10px;
+}
 </style>

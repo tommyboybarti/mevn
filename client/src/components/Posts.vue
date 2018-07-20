@@ -19,9 +19,9 @@
           </thead>
           <tbody>
             <!-- v-for requires a key -->
-            <tr v-for="post in filteredPosts" :key="post.id">
-              <td>{{ post.title }}</td>
-              <td>{{ post.tags }}</td>
+            <tr class="need-margin" v-for="post in filteredPosts" :key="post.id">
+              <td><p>{{ post.title }}</p></td>
+              <td><p>{{ post.tags }}</p></td>
               <td>
                 <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">View</router-link>
                 <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
@@ -81,11 +81,21 @@ export default {
 </script>
 
 <style scoped>
+
+.posts {
+  padding-top: 10px;
+}
 .container {
   margin-top: 20px;
-  border: 1px black solid;
-  background-color: #76A3A2;
   position: center;
+  background-image: url('../assets/empire_build.jpg');
+  background-size: cover;
+  background-attachment: scroll;
+}
+p:hover {
+  background: rgba(211, 211, 211);
+  border: black 1px solid;
+  border-radius: 5px;
 }
 .search-input {
   border-radius: 15px;
@@ -100,19 +110,14 @@ input {
   width: 50%;
 }
 table {
+  border-spacing: 20px 2;
   width: 100%;
   padding: 10px;
   position: relative;
 }
 th {
   padding: 20px;
-  color: #CBD8CF;
-  background-color: #0D202A;
-}
-td {
-  padding: 15px;
-  border: dotted black 1px;
-  background-color: #CBD8CF;
+  background-color: rgba(211, 211, 211, 0.4);
 }
 .btnDelete {
   color: crimson;
