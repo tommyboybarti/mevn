@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div>
+      <appheader></appheader>
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
+import Header from './components/templates/Header.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'appheader': Header
+  }
 }
 </script>
 
@@ -17,6 +25,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background: url('./assets/laptop_glasses.jpg');
+  height: 700px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+a {
+  text-decoration: none;
+  color: rgb(53, 99, 184);
+}
+a:hover {
+  color: deepskyblue;
 }
 </style>

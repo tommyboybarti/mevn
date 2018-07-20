@@ -7,7 +7,7 @@
       </div>
       <div class="container">
         <div class="search">
-          <input type="text" v-model="search" placeholder="Search">
+          <input class="search-input" type="text" v-model="search" placeholder="Search">
         </div>
         <table>
           <thead>
@@ -87,6 +87,12 @@ export default {
   background-color: #76A3A2;
   position: center;
 }
+.search-input {
+  border-radius: 15px;
+}
+.search-input:focus {
+  outline: none;
+}
 input {
   margin: 10px;
   font-size: 14px;
@@ -107,13 +113,6 @@ td {
   padding: 15px;
   border: dotted black 1px;
   background-color: #CBD8CF;
-}
-a {
-  text-decoration: none;
-  color: rgb(53, 99, 184);
-}
-a:hover {
-  color: deepskyblue;
 }
 .btnDelete {
   color: crimson;

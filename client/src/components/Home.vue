@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data () {
     return {
       msg: 'Knowledge Base'
@@ -21,11 +21,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-a {
-  text-decoration: none;
-  color: rgb(53, 99, 184);
-}
-a:hover {
-  color: deepskyblue;
-}
+
 </style>
