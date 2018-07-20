@@ -91,11 +91,11 @@ export default {
   background-image: url('../assets/empire_build.jpg');
   background-size: cover;
   background-attachment: scroll;
+  box-sizing: border-box;
 }
 p:hover {
-  background: rgba(211, 211, 211);
-  border: black 1px solid;
-  border-radius: 5px;
+  background: rgba(211, 211, 211, 0.8);
+  border-radius: 18px;
 }
 .search-input {
   border-radius: 15px;
