@@ -69,21 +69,24 @@ export default {
 <style scoped>
 .container {
   margin-top: 20px;
-  border: 1px black solid;
-  background-color: gainsboro;
 }
 table {
+  border-spacing: 0px;
   width: 100%;
-  padding: 10px;
+  position: relative;
+}
+thead {
+  padding: 20px;
+  background: rgba(211, 211, 211, 1);
+}
+tbody {
+  background: linear-gradient(rgba(211, 211, 211, 1), rgba(211, 211, 211, 0.1));
 }
 th {
-  padding: 20px;
-  background-color: rgba(130, 130, 130, 0.3);
+  padding: 15px;
 }
 td {
   padding: 15px;
-  border: dotted black 1px;
-  background-color: rgba(136, 217, 223, 0.2);
 }
 a {
   display: block;

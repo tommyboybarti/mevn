@@ -20,8 +20,8 @@
           <tbody>
             <!-- v-for requires a key -->
             <tr class="need-margin" v-for="post in filteredPosts" :key="post.id">
-              <td><p>{{ post.title }}</p></td>
-              <td><p>{{ post.tags }}</p></td>
+              <td class="title"><p>{{ post.title }}</p></td>
+              <td class="tags"><p>{{ post.tags }}</p></td>
               <td>
                 <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">View</router-link>
                 <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
@@ -72,10 +72,6 @@ export default {
       const response = await PostsService.fetchPosts()
       this.posts = response.data.posts
     }
-    // async deletePost (id) {
-    //   await PostsService.deletePost(id)
-    //   this.$router.push({ name: 'Posts' })
-    // }
   }
 }
 </script>
@@ -92,10 +88,10 @@ export default {
   background-size: cover;
   background-attachment: scroll;
   box-sizing: border-box;
+  min-height: 550px;
 }
-p:hover {
-  background: rgba(211, 211, 211, 0.8);
-  border-radius: 18px;
+.search {
+  background: rgba(211, 211, 211, 1);
 }
 .search-input {
   border-radius: 15px;
@@ -110,14 +106,19 @@ input {
   width: 50%;
 }
 table {
-  border-spacing: 20px 2;
+  border-spacing: 0px;
   width: 100%;
-  padding: 10px;
   position: relative;
 }
 th {
   padding: 20px;
-  background-color: rgba(211, 211, 211, 0.4);
+  background: linear-gradient(rgba(211, 211, 211, 1), rgba(211, 211, 211, 0));
+}
+tr .title {
+  padding-right: 7%;
+}
+tr .tags{
+  padding-left: 7%;
 }
 .btnDelete {
   color: crimson;

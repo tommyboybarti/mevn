@@ -27,7 +27,8 @@ export default {
   color: #2c3e50;
   background: url('./assets/laptop_glasses.jpg');
   background-size: cover;
-  background-attachment: fixed;
+  background-position: center;
+  min-height: 55vw;
 }
 a {
   text-decoration: none;
