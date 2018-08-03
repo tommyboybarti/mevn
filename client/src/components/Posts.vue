@@ -12,11 +12,11 @@
         <table>
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Tags</th>
-              <th>Action</th>
+              <th>Title<th>
+              <th>Tags<th>
+              <th>Action<th>
             </tr>
-          </thead>
+          <!-- </thead> -->
           <tbody>
             <!-- v-for requires a key -->
             <tr class="need-margin" v-for="post in filteredPosts" :key="post.id">
@@ -44,47 +44,50 @@
 </template>
 
 <script>
-import PostsService from '@/services/PostsService'
+import PostsService from "@/services/PostsService";
 
 export default {
   // name: 'posts',
-  data () {
+  data() {
     return {
-      msg: 'Articles',
+      msg: "Articles",
       posts: [],
-      search: ''
-    }
+      search: ""
+    };
   },
-  mounted () {
-    this.getPosts()
+  mounted() {
+    this.getPosts();
   },
   computed: {
     // requires a proper function declaration otherwise this.posts is not found.
-    filteredPosts: function () {
-      return this.posts.filter((post) => {
-        const reg = new RegExp(this.search, 'i')
-        return post.title.match(reg) || post.tags.match(reg) || post.description.match(reg)
-      })
+    filteredPosts: function() {
+      return this.posts.filter(post => {
+        const reg = new RegExp(this.search, "i");
+        return (
+          post.title.match(reg) ||
+          post.tags.match(reg) ||
+          post.description.match(reg)
+        );
+      });
     }
   },
   methods: {
-    async getPosts () {
-      const response = await PostsService.fetchPosts()
-      this.posts = response.data.posts
+    async getPosts() {
+      const response = await PostsService.fetchPosts();
+      this.posts = response.data.posts;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 .posts {
   padding-top: 10px;
 }
 .container {
   margin-top: 20px;
   position: center;
-  background-image: url('../assets/empire_build.jpg');
+  background-image: url("../assets/empire_build.jpg");
   background-size: cover;
   background-attachment: scroll;
   box-sizing: border-box;
@@ -117,7 +120,7 @@ th {
 tr .title {
   padding-right: 7%;
 }
-tr .tags{
+tr .tags {
   padding-left: 7%;
 }
 .btnDelete {
