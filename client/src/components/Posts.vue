@@ -12,11 +12,11 @@
         <table>
           <thead>
             <tr>
-              <th>Title<th>
-              <th>Tags<th>
-              <th>Action<th>
+              <th>Title</th>
+              <th>Tags</th>
+              <th>Action</th>
             </tr>
-          <!-- </thead> -->
+          </thead>
           <tbody>
             <!-- v-for requires a key -->
             <tr class="need-margin" v-for="post in filteredPosts" :key="post.id">
@@ -44,40 +44,40 @@
 </template>
 
 <script>
-import PostsService from "@/services/PostsService";
+import PostsService from '@/services/PostsService'
 
 export default {
   // name: 'posts',
-  data() {
+  data () {
     return {
-      msg: "Articles",
+      msg: 'Articles',
       posts: [],
-      search: ""
-    };
+      search: ''
+    }
   },
-  mounted() {
-    this.getPosts();
+  mounted () {
+    this.getPosts()
   },
   computed: {
     // requires a proper function declaration otherwise this.posts is not found.
-    filteredPosts: function() {
+    filteredPosts: function () {
       return this.posts.filter(post => {
-        const reg = new RegExp(this.search, "i");
+        const reg = new RegExp(this.search, 'i')
         return (
           post.title.match(reg) ||
           post.tags.match(reg) ||
           post.description.match(reg)
-        );
-      });
+        )
+      })
     }
   },
   methods: {
-    async getPosts() {
-      const response = await PostsService.fetchPosts();
-      this.posts = response.data.posts;
+    async getPosts () {
+      const response = await PostsService.fetchPosts()
+      this.posts = response.data.posts
     }
   }
-};
+}
 </script>
 
 <style scoped>
