@@ -14,7 +14,6 @@
       <div>
         <textarea placeholder="Description" v-model="description"></textarea>
       </div>
-        <textarea placeholder="Code" v-model="code"></textarea>
       <div>
         <router-link v-bind:to="{ name: 'Posts'}">Back</router-link>
         <a class="app_post_btn" @click="addPost">Add</a>
@@ -33,8 +32,7 @@ export default {
       title: '',
       format: '',
       tags: '',
-      description: '',
-      code: ''
+      description: ''
     }
   },
   methods: {
@@ -43,8 +41,7 @@ export default {
         title: this.title,
         format: this.format,
         tags: this.tags,
-        description: this.description,
-        code: this.code
+        description: this.description
       })
       this.$router.push({ name: 'Posts' })
     }

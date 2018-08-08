@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import Posts from '@/components/Posts'
-import NewPost from '@/components/NewPost'
-import EditPost from '@/components/EditPost'
-import ViewPost from '@/components/ViewPost'
+import Posts from '@/components/articles/Posts'
+import NewPost from '@/components/articles/NewPost'
+import EditPost from '@/components/articles/EditPost'
+import ViewPost from '@/components/articles/ViewPost'
+import Notes from '@/components/notes/Notes'
+import NewNote from '@/components/notes/NewNote'
+import ViewNote from '@/components/notes/ViewNote'
+import EditNote from '@/components/notes/EditNote'
 
 Vue.use(Router)
 
@@ -36,6 +40,26 @@ export default new Router({
       path: '/posts/:id',
       name: 'ViewPost',
       component: ViewPost
+    },
+    {
+      path: '/notes',
+      name: 'Notes',
+      component: Notes
+    },
+    {
+      path: '/notes/new',
+      name: 'NewNote',
+      component: NewNote
+    },
+    {
+      path: '/notes/edit/:id',
+      name: 'EditNote',
+      component: EditNote
+    },
+    {
+      path: '/notes/:id',
+      name: 'ViewNote',
+      component: ViewNote
     }
   ]
 })

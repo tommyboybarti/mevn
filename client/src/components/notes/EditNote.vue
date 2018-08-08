@@ -1,67 +1,67 @@
 <template>
-  <div class="posts">
+  <div class="notes">
     <h1>Edit Info</h1>
     <div class="form">
       <div>
-        <input type="text" placeholder="Title" v-model="post.title">
+        <input type="text" placeholder="Title" v-model="note.title">
       </div>
       <div>
-        <input type="text" placeholder="Format" v-model="post.format">
+        <input type="text" placeholder="Format" v-model="note.format">
       </div>
       <div>
-        <input type="text" placeholder="Tags" v-model="post.tags">
+        <input type="text" placeholder="Tags" v-model="note.tags">
       </div>
       <div>
-        <textarea placeholder="Description" v-model="post.description"></textarea>
+        <textarea placeholder="Description" v-model="note.description"></textarea>
       </div>
       <div>
-        <textarea placeholder="Code" v-model="post.code"></textarea>
+        <textarea placeholder="Code" v-model="note.code"></textarea>
       </div>
       <div>
-        <router-link v-bind:to="{ name: 'ViewPost'
-        //, params: { id: post._id }
+        <router-link v-bind:to="{ name: 'ViewNote'
+        //, params: { id: note._id }
         }">Cancel</router-link>
-        <button @click="updatePost">Update</button>
+        <button @click="updateNote">Update</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import PostsService from '@/services/PostsService'
+import NotesService from '@/services/NotesService'
 
 export default {
   data () {
     return {
-      post: {}
+      note: {}
       // title: '',
       // description: '',
       // code: ''
     }
   },
   mounted () {
-    this.getPost()
+    this.getNote()
   },
   methods: {
-    async getPost () {
-      const response = await PostsService.getPost({
+    async getNote () {
+      const response = await NotesService.getNote({
         id: this.$route.params.id
       })
-      this.post = response.data
+      this.note = response.data
       // this.title = response.data.title
       // this.description = response.data.description
       // this.code = response.data.code
     },
-    async updatePost () {
-      await PostsService.updatePost({
+    async updateNote () {
+      await NotesService.updateNote({
         id: this.$route.params.id,
-        title: this.post.title,
-        format: this.post.format,
-        tags: this.post.tags,
-        description: this.post.description,
-        code: this.post.code
+        title: this.note.title,
+        format: this.note.format,
+        tags: this.note.tags,
+        description: this.note.description,
+        code: this.note.code
       })
-      this.$router.push({ name: 'Posts' })
+      this.$router.push({ name: 'Notes' })
     }
   }
 }

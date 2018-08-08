@@ -52,7 +52,7 @@ export default {
   // name: 'posts',
   data () {
     return {
-      msg: 'Posts',
+      msg: 'Articles & Videos',
       posts: [],
       search: ''
     }

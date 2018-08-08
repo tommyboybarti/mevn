@@ -2,8 +2,9 @@
   <div class="home">
     <h1>{{ msg }}</h1>
     <p>What would you like to look up?</p>
-    <div>
-      <router-link v-bind:to="{ name: 'Posts'}">Articles</router-link>
+    <div class="links">
+      <router-link v-bind:to="{ name: 'Posts' }">Articles</router-link>
+      <router-link v-bind:to="{ name: 'Notes' }">Notes</router-link>
     </div>
   </div>
 </template>
@@ -24,5 +25,8 @@ export default {
 .home {
   height: 650px;
   padding-top: 10px;
+}
+.links {
+  font-size: 18px;
 }
 </style>
