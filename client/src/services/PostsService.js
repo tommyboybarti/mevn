@@ -2,8 +2,12 @@
 import Api from './Api'
 
 export default {
-  fetchPosts () {
-    return Api().get('posts')
+  fetchPosts (search) {
+    return Api().get('posts', {
+      params: {
+        search: search
+      }
+    })
   },
   addPost (params) {
     return Api().post('posts', params)
@@ -16,5 +20,8 @@ export default {
   },
   deletePost (id) {
     return Api().delete(`posts/${id}`)
+  },
+  searchPost (params) {
+    return Api().get('')
   }
 }

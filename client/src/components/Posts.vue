@@ -76,6 +76,14 @@ export default {
       const response = await PostsService.fetchPosts()
       this.posts = response.data.posts
     }
+  },
+  watch: {
+    '$route.query.search': {
+      immediate: true,
+      async handler (value) {
+        this.posts = (await PostsService.fetchPosts(value)).data
+      }
+    }
   }
 }
 </script>

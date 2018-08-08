@@ -26,14 +26,31 @@ module.exports = (app) => {
   })
   app.get('/posts', (req, res) => {
     // need to specify what key-value pairs are shown in ''
-    Post.find({}, 'title tags description code', function (err, posts) {
-      if (err) {
-        console.error(err)
+    let searchPosts = {}
+    let search = req.query.search
+    try {
+      if (search) {
+        Post.find({'tags': search }, 'title tags description code', function (err, searchPosts) {
+          console.log('here we go:', search)
+          if (err) {
+            console.error(err)
+          }
+          res.json(searchPosts)
+        }).sort({_id:-1})
+      } else {
+          Post.find({}, 'title tags description code', function (err, posts) {
+            if (err) {
+              console.error(err)
+            }
+            res.json(posts)
+            console.log('else')
+          }).sort({_id:-1})
+        }
+      } catch (err) {
+        res.status(500).send({
+          error: 'its all wrong'
+        })
       }
-      res.send({
-        posts: posts,
-      })
-    }).sort({_id:-1})
   })
   app.get('/post/:id', (req, res) => {
     const db = req.db
