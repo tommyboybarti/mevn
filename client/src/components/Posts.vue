@@ -13,6 +13,7 @@
           <thead>
             <tr>
               <th>Title</th>
+              <th>Format</th>
               <th>Tags</th>
               <th>Action</th>
             </tr>
@@ -21,6 +22,7 @@
             <!-- v-for requires a key -->
             <tr class="need-margin" v-for="post in filteredPosts" :key="post.id">
               <td class="title"><p>{{ post.title }}</p></td>
+              <td class="format"><p>{{ post.format }}</p></td>
               <td class="tags"><p>{{ post.tags }}</p></td>
               <td>
                 <router-link v-bind:to="{ name: 'ViewPost', params: { id: post._id }}">View</router-link>
@@ -50,7 +52,7 @@ export default {
   // name: 'posts',
   data () {
     return {
-      msg: 'Articles',
+      msg: 'Posts',
       posts: [],
       search: ''
     }
@@ -65,6 +67,7 @@ export default {
         const reg = new RegExp(this.search, 'i')
         return (
           post.title.match(reg) ||
+          post.format.match(reg) ||
           post.tags.match(reg) ||
           post.description.match(reg)
         )
@@ -87,8 +90,7 @@ export default {
 .container {
   margin-top: 20px;
   position: center;
-  background-image: url("../assets/empire_build.jpg");
-  background-size: cover;
+  background: rgba(208, 221, 235, 0.9);
   background-attachment: scroll;
   box-sizing: border-box;
   min-height: 550px;

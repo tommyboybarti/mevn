@@ -5,6 +5,7 @@ module.exports = (app) => {
   app.post('/posts', (req, res) => {
     const db = req.db
     const title = req.body.title
+    const format = req.body.format
     const tags = req.body.tags
     const description = req.body.description
     const code = req.body.code
@@ -26,7 +27,7 @@ module.exports = (app) => {
   })
   app.get('/posts', (req, res) => {
     // need to specify what key-value pairs are shown in ''
-    Post.find({}, 'title tags description code', function (err, posts) {
+    Post.find({}, 'title format tags description code', function (err, posts) {
       if (err) {
         console.error(err)
       }
@@ -37,7 +38,7 @@ module.exports = (app) => {
   })
   app.get('/post/:id', (req, res) => {
     const db = req.db
-    Post.findById(req.params.id, 'title tags description code', function (err, post) {
+    Post.findById(req.params.id, 'title format tags description code', function (err, post) {
       if (err) {
         console.error(err)
       }
@@ -46,11 +47,12 @@ module.exports = (app) => {
   })
   app.put('/posts/edit/:id', (req, res) => {
     const db = req.db
-    Post.findById(req.params.id, 'title tags description code', function (err, post) {
+    Post.findById(req.params.id, 'title format tags description code', function (err, post) {
       if (err) {
         console.error(err)
       }
       post.title = req.body.title
+      post.format = req.body.format
       post.tags = req.body.tags
       post.description = req.body.description
       post.code = req.body.code

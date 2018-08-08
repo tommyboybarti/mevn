@@ -6,8 +6,9 @@
         <thead>
           <tr>
             <th>Title</th>
+            <th>Format</th>
             <th>Tags</th>
-            <th>Link</th>
+            <th>Link/Description</th>
             <th>Code</th>
             <th>Action</th>
           </tr>
@@ -15,8 +16,9 @@
         <tbody>
           <tr>
             <td>{{ post.title }}</td>
+            <td>{{ post.format }}</td>
             <td>{{ post.tags }}</td>
-            <td><a v-bind:href="post.description" target="_blank">{{ post.description }}</a></td>
+            <td class="link"><a v-bind:href="post.description" target="_blank">{{ post.description }}</a></td>
             <td><pre>{{ post.code }}</pre></td>
             <td>
               <router-link v-bind:to="{ name: 'EditPost'
@@ -73,7 +75,6 @@ export default {
 table {
   border-spacing: 0px;
   width: 100%;
-  position: relative;
 }
 thead {
   padding: 20px;
@@ -87,6 +88,9 @@ th {
 }
 td {
   padding: 15px;
+}
+.link {
+  word-break: break-all;
 }
 a {
   display: block;

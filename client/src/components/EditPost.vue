@@ -6,6 +6,9 @@
         <input type="text" placeholder="Title" v-model="post.title">
       </div>
       <div>
+        <input type="text" placeholder="Format" v-model="post.format">
+      </div>
+      <div>
         <input type="text" placeholder="Tags" v-model="post.tags">
       </div>
       <div>
@@ -53,6 +56,7 @@ export default {
       await PostsService.updatePost({
         id: this.$route.params.id,
         title: this.post.title,
+        format: this.post.format,
         tags: this.post.tags,
         description: this.post.description,
         code: this.post.code
@@ -77,21 +81,20 @@ textarea {
   height: 150px;
   padding: 5px;
 }
-a {
+a, button {
   text-decoration: none;
   color: darkslategrey;
+  margin: 5px;
 }
-a:hover {
+a:hover, button:hover {
   color: deepskyblue;
 }
 button {
-  color: rgb(53, 99, 184);
-  margin-left: 15px;
   border: none;
+  background: transparent;
   font-size: 16px;
 }
 button:hover {
-  color: deepskyblue;
   cursor: pointer;
 }
 </style>
