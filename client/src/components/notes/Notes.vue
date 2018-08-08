@@ -9,6 +9,11 @@
         <div class="search">
           <input class="search-input" type="text" v-model="search" placeholder="Search">
         </div>
+        <div>
+          <select v-model="notes.tag" name="tagsFilter">
+            <option v-for="tag in notes.tags" :key="tag.value">{{ this.notes.tag }}</option>
+          </select>
+        </div>
         <table>
           <thead>
             <tr>
@@ -68,8 +73,7 @@ export default {
         return (
           note.title.match(reg) ||
           note.format.match(reg) ||
-          note.tags.match(reg) ||
-          note.description.match(reg)
+          note.tags.match(reg)
         )
       })
     }

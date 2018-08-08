@@ -18,7 +18,7 @@
             <td>{{ note.title }}</td>
             <td>{{ note.format }}</td>
             <td>{{ note.tags }}</td>
-            <td><a v-bind:href="note.description" target="_blank">{{ note.description }}</a></td>
+            <td>{{ note.description }}</td>
             <td><pre>{{ note.code }}</pre></td>
             <td>
               <router-link v-bind:to="{ name: 'EditNote'
@@ -88,6 +88,10 @@ th {
 }
 td {
   padding: 15px;
+  max-width: calc(100%/3);
+}
+pre {
+  white-space: pre-wrap;
 }
 a {
   display: block;
