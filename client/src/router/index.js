@@ -9,6 +9,7 @@ import Notes from '@/components/notes/Notes'
 import NewNote from '@/components/notes/NewNote'
 import ViewNote from '@/components/notes/ViewNote'
 import EditNote from '@/components/notes/EditNote'
+import Cheatsheets from '@/components/templates/HTML_CSS_Cheat'
 
 Vue.use(Router)
 
@@ -60,6 +61,11 @@ export default new Router({
       path: '/notes/:id',
       name: 'ViewNote',
       component: ViewNote
+    },
+    {
+      path: '/cheatsheets',
+      name: 'Cheatsheets',
+      component: Cheatsheets
     }
   ]
 })

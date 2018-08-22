@@ -9,11 +9,17 @@
         <div class="search">
           <input class="search-input" type="text" v-model="search" placeholder="Search">
         </div>
-        <div>
+        <form class="select">
           <select v-model="notes.tag" name="tagsFilter">
             <option v-for="tag in notes.tags" :key="tag.value">{{ this.notes.tag }}</option>
           </select>
-        </div>
+        </form>
+        <form class="check">
+          <input type="checkbox" />
+          <label for="HTML">HTML</label>
+          <input type="checkbox" />
+          <label for="WebDev">WebDev</label>
+        </form>
         <table>
           <thead>
             <tr>
@@ -82,6 +88,17 @@ export default {
     async getNotes () {
       const response = await NotesService.fetchNotes()
       this.notes = response.data.notes
+    },
+    hideContent () {
+      const list = document.querySelector('.need-margin tr')
+      const checkHTML = document.querySelector('#HTML')
+      checkHTML.addEventListener('change', function (e) {
+        if (checkHTML.checked) {
+          list.style.display = 'none'
+        } else {
+          list.style.display = 'block'
+        }
+      })
     }
   }
 }
@@ -99,16 +116,14 @@ export default {
   box-sizing: border-box;
   min-height: 550px;
 }
-.search {
+form, .search {
   background: rgba(211, 211, 211, 1);
-}
-.search-input {
-  border-radius: 15px;
 }
 .search-input:focus {
   outline: none;
 }
-input {
+.search-input {
+  border-radius: 15px;
   margin: 10px;
   font-size: 14px;
   padding: 10px;

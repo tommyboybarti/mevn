@@ -21,9 +21,7 @@
             <td>{{ note.description }}</td>
             <td><pre>{{ note.code }}</pre></td>
             <td>
-              <router-link v-bind:to="{ name: 'EditNote'
-              // , params: { id: note._id }
-              }">Edit</router-link>
+              <router-link v-bind:to="{ name: 'EditNote' }">Edit</router-link>
               <a class="btnDelete" @click="deleteNote(note._id)">Delete</a>
             </td>
           </tr>

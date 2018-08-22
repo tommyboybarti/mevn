@@ -5,6 +5,7 @@
     <div class="links">
       <router-link v-bind:to="{ name: 'Posts' }">Articles</router-link>
       <router-link v-bind:to="{ name: 'Notes' }">Notes</router-link>
+      <!-- <router-link v-bind:to="{ name: 'Cheatsheets' }">Cheatsheets</router-link> -->
     </div>
   </div>
 </template>
