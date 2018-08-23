@@ -100,7 +100,7 @@ export default {
 .container {
   margin-top: 20px;
   position: center;
-  background: linear-gradient(45deg, rgba(211, 211, 211, 1), rgba(211, 211, 211, 0.5));
+  background: linear-gradient(45deg, rgba(211, 211, 211, 1), rgba(211, 211, 211, 0.6));
   background-attachment: scroll;
   box-sizing: border-box;
   min-height: 550px;
@@ -128,5 +128,9 @@ export default {
   margin-top: 2%;
   border-radius: 6px;
   box-shadow: 0 0px 10px 1px #777;
+}
+.title {
+  font-size: 1.1rem;
+  font-weight: bold
 }
 </style>
