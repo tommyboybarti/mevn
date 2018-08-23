@@ -14,35 +14,23 @@
             <option v-for="tag in notes.tags" :key="tag.value">{{ this.notes.tag }}</option>
           </select>
         </form>
-        <form class="check">
+        <form class="filter">
           <input type="checkbox" />
           <label for="HTML">HTML</label>
           <input type="checkbox" />
           <label for="WebDev">WebDev</label>
         </form>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Format</th>
-              <th>Tags</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- v-for requires a key -->
-            <tr class="need-margin" v-for="note in filteredNotes" :key="note.id">
-              <td class="title"><p>{{ note.title }}</p></td>
-              <td class="format"><p>{{ note.format }}</p></td>
-              <td class="tags"><p>{{ note.tags }}</p></td>
-              <td>
-                <router-link v-bind:to="{ name: 'ViewNote', params: { id: note._id }}">View</router-link>
-                <!-- <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id }}">Edit</router-link>
-                <a class="btnDelete" href="" @click="deletePost(post._id)">Delete</a> -->
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="noteContainer">
+          <!-- v-for requires a key -->
+          <div class="noteBlock" v-for="note in filteredNotes" :key="note.id">
+            <p class="title">{{ note.title }}</p>
+            <p class="format">{{ note.format }}</p>
+            <p class="tags">{{ note.tags }}</p>
+            <div>
+              <router-link v-bind:to="{ name: 'ViewNote', params: { id: note._id }}">View</router-link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div v-else>
@@ -88,18 +76,19 @@ export default {
     async getNotes () {
       const response = await NotesService.fetchNotes()
       this.notes = response.data.notes
-    },
-    hideContent () {
-      const list = document.querySelector('.need-margin tr')
-      const checkHTML = document.querySelector('#HTML')
-      checkHTML.addEventListener('change', function (e) {
-        if (checkHTML.checked) {
-          list.style.display = 'none'
-        } else {
-          list.style.display = 'block'
-        }
-      })
     }
+    // ,
+    // hideContent() {
+    //   const list = document.querySelector(".need-margin tr");
+    //   const checkHTML = document.querySelector("#HTML");
+    //   checkHTML.addEventListener("change", function(e) {
+    //     if (checkHTML.checked) {
+    //       list.style.display = "none";
+    //     } else {
+    //       list.style.display = "block";
+    //     }
+    //   })
+    // }
   }
 }
 </script>
@@ -111,13 +100,10 @@ export default {
 .container {
   margin-top: 20px;
   position: center;
-  background: rgba(208, 221, 235, 0.9);
+  background: linear-gradient(45deg, rgba(211, 211, 211, 1), rgba(211, 211, 211, 0.5));
   background-attachment: scroll;
   box-sizing: border-box;
   min-height: 550px;
-}
-form, .search {
-  background: rgba(211, 211, 211, 1);
 }
 .search-input:focus {
   outline: none;
@@ -129,22 +115,18 @@ form, .search {
   padding: 10px;
   width: 50%;
 }
-table {
-  border-spacing: 0px;
-  width: 100%;
-  position: relative;
+.noteContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-around
 }
-th {
-  padding: 20px;
-  background: linear-gradient(rgba(211, 211, 211, 1), rgba(211, 211, 211, 0));
-}
-tr .title {
-  padding-right: 7%;
-}
-tr .tags {
-  padding-left: 7%;
-}
-.btnDelete {
-  color: crimson;
+.noteBlock {
+  background: rgba(175, 209, 221, 0.801);
+  padding: 10px;
+  margin-top: 2%;
+  border-radius: 6px;
+  box-shadow: 0 0px 10px 1px #777;
 }
 </style>
