@@ -7,25 +7,25 @@
       </div>
       <div class="container">
         <div class="search">
-          <input class="search-input" type="text" v-model="search" placeholder="Search">
+          <input class="search-input" type="text" v-model="searchFilter" placeholder="Search for anything">
         </div>
+        <label for="select">Select a tag</label>
         <form class="select">
-          <select v-model="tagsFilter" name="tagsFilter">
+          <select v-model="selectFilter" name="selectFilter">
             <!-- <option v-for="tag in tags" :key="tag.value">{{ this.notes.tag }}</option> -->
             <option value="">None</option>
             <option value="HTML">HTML</option>
             <option value="WebDev">WebDev</option>
           </select>
         </form>
-        <form class="filter">
-          <input type="checkbox" />
-          <label for="HTML">HTML</label>
-          <input type="checkbox" />
-          <label for="WebDev">WebDev</label>
-        </form>
+        <ul>
+          <li v-for="note in checkFilter" v-bind:key="note.id">
+            <input type="checkbox" v-bind:value="checkFilter" /> {{ checkFilter }}
+          </li>
+        </ul>
         <div class="noteContainer">
           <!-- v-for requires a key -->
-          <div class="noteBlock" v-for="note in filteredByTag" :key="note.id">
+          <div class="noteBlock" v-for="note in filteredBySelect" :key="note.id">
             <p class="title">{{ note.title }}</p>
             <p class="format">{{ note.format }}</p>
             <p class="tags">{{ note.tags }}</p>
@@ -56,8 +56,9 @@ export default {
     return {
       msg: 'Notes',
       notes: [],
-      search: '',
-      tagsFilter: ''
+      searchFilter: '',
+      selectFilter: '',
+      checkFilter: []
     }
   },
   mounted () {
@@ -65,23 +66,29 @@ export default {
   },
   computed: {
     // requires a proper function declaration otherwise this.posts is not found.
-    filteredNotes: function () {
+    filteredBySearch: function () {
       return this.notes.filter(note => {
-        const reg = new RegExp(this.search, 'i')
+        const searchNote = new RegExp(this.searchFilter, 'i')
         return (
-          note.title.match(reg) ||
-          note.format.match(reg) ||
-          note.tags.match(reg)
+          note.title.match(searchNote) ||
+          note.format.match(searchNote) ||
+          note.tags.match(searchNote)
         )
       })
     },
-    filteredByTag: function () {
+    filteredBySelect: function () {
       return this.notes.filter(note => {
-        const filteredTag = this.tagsFilter
+        const tagNote = this.selectFilter
         return (
-          note.title.match(filteredTag) ||
-          note.format.match(filteredTag) ||
-          note.tags.match(filteredTag)
+          note.tags.match(tagNote)
+        )
+      })
+    },
+    filteredByCheck: function () {
+      return this.notes.filter(note => {
+        const checkNote = this.checkFilter
+        return (
+          note.tags.match(checkNote)
         )
       })
     }
@@ -91,18 +98,6 @@ export default {
       const response = await NotesService.fetchNotes()
       this.notes = response.data.notes
     }
-    // ,
-    // hideContent() {
-    //   const list = document.querySelector(".need-margin tr");
-    //   const checkHTML = document.querySelector("#HTML");
-    //   checkHTML.addEventListener("change", function(e) {
-    //     if (checkHTML.checked) {
-    //       list.style.display = "none";
-    //     } else {
-    //       list.style.display = "block";
-    //     }
-    //   })
-    // }
   }
 }
 </script>
