@@ -10,8 +10,11 @@
           <input class="search-input" type="text" v-model="search" placeholder="Search">
         </div>
         <form class="select">
-          <select v-model="notes.tag" name="tagsFilter">
-            <option v-for="tag in notes.tags" :key="tag.value">{{ this.notes.tag }}</option>
+          <select v-model="tagsFilter" name="tagsFilter">
+            <!-- <option v-for="tag in tags" :key="tag.value">{{ this.notes.tag }}</option> -->
+            <option value="">None</option>
+            <option value="HTML">HTML</option>
+            <option value="WebDev">WebDev</option>
           </select>
         </form>
         <form class="filter">
@@ -22,7 +25,7 @@
         </form>
         <div class="noteContainer">
           <!-- v-for requires a key -->
-          <div class="noteBlock" v-for="note in filteredNotes" :key="note.id">
+          <div class="noteBlock" v-for="note in filteredByTag" :key="note.id">
             <p class="title">{{ note.title }}</p>
             <p class="format">{{ note.format }}</p>
             <p class="tags">{{ note.tags }}</p>
@@ -53,7 +56,8 @@ export default {
     return {
       msg: 'Notes',
       notes: [],
-      search: ''
+      search: '',
+      tagsFilter: ''
     }
   },
   mounted () {
@@ -68,6 +72,16 @@ export default {
           note.title.match(reg) ||
           note.format.match(reg) ||
           note.tags.match(reg)
+        )
+      })
+    },
+    filteredByTag: function () {
+      return this.notes.filter(note => {
+        const filteredTag = this.tagsFilter
+        return (
+          note.title.match(filteredTag) ||
+          note.format.match(filteredTag) ||
+          note.tags.match(filteredTag)
         )
       })
     }
