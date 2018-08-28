@@ -26,10 +26,12 @@
         <div class="noteContainer">
           <!-- v-for requires a key -->
           <div class="noteBlock" v-for="note in filteredBySelect" :key="note.id">
-            <p class="title">{{ note.title }}</p>
-            <p class="format">{{ note.format }}</p>
-            <p class="tags">{{ note.tags }}</p>
-            <div>
+            <div class="front">
+              <p class="title">{{ note.title }}</p>
+              <p class="format">{{ note.format }}</p>
+              <p class="tags">{{ note.tags }}</p>
+            </div>
+            <div class="back">
               <router-link v-bind:to="{ name: 'ViewNote', params: { id: note._id }}">View</router-link>
             </div>
           </div>
@@ -137,6 +139,21 @@ export default {
   margin-top: 2%;
   border-radius: 6px;
   box-shadow: 0 0px 10px 1px #777;
+  -webkit-transform-style: preserve-3d;
+  transition: 0.4s;
+}
+.noteBlock:hover {
+  -webkit-transform: rotatey(-180deg);
+}
+.noteBlock .front {
+  z-index: 3;
+}
+.noteBlock .back {
+  z-index: 1;
+  -webkit-transform: rotatey(-180deg);
+}
+.noteBlock .front, .noteBlock .back {
+  -webkit-backface-visibility: hidden;
 }
 .title {
   font-size: 1.1rem;
