@@ -25,7 +25,7 @@
         </ul>
         <div class="noteContainer">
           <!-- v-for requires a key -->
-          <div class="noteBlock" v-for="note in filteredBySelect" :key="note.id">
+          <div class="noteBlock" v-for="note in filteredBySearch" :key="note.id">
             <div class="front">
               <p class="title">{{ note.title }}</p>
               <p class="format">{{ note.format }}</p>
@@ -134,26 +134,28 @@ export default {
   align-content: space-around
 }
 .noteBlock {
-  background: rgba(175, 209, 221, 0.801);
+  background: rgba(208, 221, 235, 0.9);
   padding: 10px;
   margin-top: 2%;
   border-radius: 6px;
   box-shadow: 0 0px 10px 1px #777;
-  -webkit-transform-style: preserve-3d;
-  transition: 0.4s;
+  transform-style: preserve-3d;
+  transition: 1s;
+  width: 150px;
 }
 .noteBlock:hover {
-  -webkit-transform: rotatey(-180deg);
+  transform: rotatey(-180deg);
 }
 .noteBlock .front {
   z-index: 3;
 }
 .noteBlock .back {
   z-index: 1;
-  -webkit-transform: rotatey(-180deg);
+  transform: rotatey(-180deg);
+  text-transform: uppercase;
 }
 .noteBlock .front, .noteBlock .back {
-  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .title {
   font-size: 1.1rem;

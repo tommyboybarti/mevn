@@ -88,8 +88,11 @@ td {
   padding: 15px;
   max-width: calc(100%/3);
 }
-pre {
+pre, td {
   white-space: pre-wrap;
+}
+pre {
+  text-align: left
 }
 a {
   display: block;
