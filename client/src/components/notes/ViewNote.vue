@@ -92,7 +92,9 @@ pre, td {
   white-space: pre-wrap;
 }
 pre {
-  text-align: left
+  padding-left: 50px;
+  text-align: left;
+  min-width: 400px;
 }
 a {
   display: block;
