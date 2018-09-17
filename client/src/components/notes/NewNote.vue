@@ -6,9 +6,6 @@
         <input type="text" placeholder="Title" v-model="title">
       </div>
       <div>
-        <input type="text" placeholder="Format" v-model="format">
-      </div>
-      <div>
         <input type="text" placeholder="Tags" v-model="tags">
       </div>
       <div>
@@ -31,7 +28,6 @@ export default {
   data () {
     return {
       title: '',
-      format: '',
       tags: '',
       description: '',
       code: ''
@@ -41,7 +37,6 @@ export default {
     async addNote () {
       await NotesService.addNote({
         title: this.title,
-        format: this.format,
         tags: this.tags,
         description: this.description,
         code: this.code

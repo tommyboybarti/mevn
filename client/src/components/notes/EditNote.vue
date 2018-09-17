@@ -6,9 +6,6 @@
         <input type="text" placeholder="Title" v-model="note.title">
       </div>
       <div>
-        <input type="text" placeholder="Format" v-model="note.format">
-      </div>
-      <div>
         <input type="text" placeholder="Tags" v-model="note.tags">
       </div>
       <div>
@@ -34,9 +31,6 @@ export default {
   data () {
     return {
       note: {}
-      // title: '',
-      // description: '',
-      // code: ''
     }
   },
   mounted () {
@@ -48,15 +42,11 @@ export default {
         id: this.$route.params.id
       })
       this.note = response.data
-      // this.title = response.data.title
-      // this.description = response.data.description
-      // this.code = response.data.code
     },
     async updateNote () {
       await NotesService.updateNote({
         id: this.$route.params.id,
         title: this.note.title,
-        format: this.note.format,
         tags: this.note.tags,
         description: this.note.description,
         code: this.note.code

@@ -82,13 +82,11 @@ module.exports = (app) => {
   app.post('/notes', (req, res) => {
     const db = req.db
     const title = req.body.title
-    const format = req.body.format
     const tags = req.body.tags
     const description = req.body.description
     const code = req.body.code
     const newNote = new Note({
       title: title,
-      format: format,
       tags: tags,
       description: description,
       code: code
@@ -105,7 +103,7 @@ module.exports = (app) => {
   })
   app.get('/notes', (req, res) => {
     // need to specify what key-value pairs are shown in ''
-    Note.find({}, 'title format tags description code', function (err, notes) {
+    Note.find({}, 'title tags description code', function (err, notes) {
       if (err) {
         console.error(err)
       }
@@ -117,7 +115,7 @@ module.exports = (app) => {
   // check route! it's /note (singular not notes..)
   app.get('/note/:id', (req, res) => {
     const db = req.db
-    Note.findById(req.params.id, 'title format tags description code', function (err, note) {
+    Note.findById(req.params.id, 'title tags description code', function (err, note) {
       if (err) {
         console.error(err)
       }
@@ -126,7 +124,7 @@ module.exports = (app) => {
   })
   app.put('/notes/edit/:id', (req, res) => {
     const db = req.db
-    Note.findById(req.params.id, 'title format tags description code', function (err, note) {
+    Note.findById(req.params.id, 'title tags description code', function (err, note) {
       if (err) {
         console.error(err)
       }

@@ -28,7 +28,6 @@
           <div class="noteBlock" v-for="note in filteredBySearch" :key="note.id">
             <div class="front">
               <p class="title">{{ note.title }}</p>
-              <p class="format">{{ note.format }}</p>
               <p class="tags">{{ note.tags }}</p>
             </div>
             <div class="back">
@@ -73,7 +72,6 @@ export default {
         const searchNote = new RegExp(this.searchFilter, 'i')
         return (
           note.title.match(searchNote) ||
-          note.format.match(searchNote) ||
           note.tags.match(searchNote)
         )
       })

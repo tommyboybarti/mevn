@@ -2,31 +2,29 @@
   <div class="note">
     <h1>{{ msg }}</h1>
     <div class="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Format</th>
-            <th>Tags</th>
-            <th>Description</th>
-            <th>Code</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ note.title }}</td>
-            <td>{{ note.format }}</td>
-            <td>{{ note.tags }}</td>
-            <td>{{ note.description }}</td>
-            <td><pre>{{ note.code }}</pre></td>
-            <td>
-              <router-link v-bind:to="{ name: 'EditNote' }">Edit</router-link>
-              <a class="btnDelete" @click="deleteNote(note._id)">Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="info-box">
+        <h3>Title</h3>
+        <p>{{ note.title }}</p>
+      </div>
+      <div class="info-box">
+        <h3>Tags</h3>
+        <p>{{ note.tags }}</p>
+      </div>
+      <div class="info-box">
+        <h3>Description</h3>
+        <p>{{ note.description }}</p>
+      </div>
+      <div class="info-box">
+        <h3>Code</h3>
+        <pre>{{ note.code }}</pre>
+      </div>
+      <div class="info-box">
+        <h3>Action</h3>
+        <p>
+          <router-link v-bind:to="{ name: 'EditNote' }">Edit</router-link>
+          <a class="btnDelete" @click="deleteNote(note._id)">Delete</a>
+        </p>
+      </div>
     </div>
     <div class="button">
       <router-link v-bind:to="{ name: 'Notes' }">Back</router-link>
@@ -54,9 +52,6 @@ export default {
       })
       this.note = response.data
       // it's enough to only send one obj.
-      // this.title = response.data.title
-      // this.description = response.data.description
-      // this.code = response.data.code
     },
     async deleteNote (id) {
       await NotesService.deleteNote(id)
@@ -68,33 +63,25 @@ export default {
 
 <style scoped>
 .container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #ccc;
+  opacity: 0.9;
   margin-top: 20px;
+  justify-content: center;
 }
-table {
-  border-spacing: 0px;
-  width: 100%;
+.info-box {
+  min-width: 100px;
+/*  max-width: rem(500px);*/
+  margin: 20px;
 }
-thead {
-  padding: 20px;
-  background: rgba(211, 211, 211, 1);
-}
-tbody {
-  background: rgba(211, 211, 211, 0.9);
-}
-th {
-  padding: 15px;
-}
-td {
-  padding: 15px;
-  max-width: calc(100%/3);
-}
-pre, td {
+pre {
   white-space: pre-wrap;
 }
 pre {
-  padding-left: 50px;
+/*  padding-left: 50px;*/
   text-align: left;
-  min-width: 400px;
 }
 a {
   display: block;

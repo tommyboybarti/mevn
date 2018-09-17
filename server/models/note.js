@@ -3,7 +3,6 @@ const Schema = mongoose.Schema
 
 const NoteSchema = new Schema({
   title: String,
-  format: String,
   tags: String,
   description: String,
   code: String,
